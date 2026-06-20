@@ -52,7 +52,7 @@ struct CharacterSlotEditorView: View {
             HStack {
                 Spacer()
 
-                Button("닫기".posturePetLocalized) {
+                Button("닫기") {
                     dismiss()
                 }
                 .keyboardShortcut(.cancelAction)
@@ -78,12 +78,12 @@ struct CharacterSlotEditorView: View {
                 HStack(spacing: 6) {
                     ProgressView()
                         .controlSize(.small)
-                    Text("처리 중".posturePetLocalized)
+                    Text("처리 중")
                 }
                 .font(.caption.weight(.medium))
                 .foregroundStyle(.secondary)
             } else if viewModel.isSelectedCharacterSlot(slot) {
-                Text("사용 중".posturePetLocalized)
+                Text("사용 중")
                     .font(.caption.weight(.medium))
                     .foregroundStyle(.secondary)
             }
@@ -113,7 +113,7 @@ struct CharacterSlotEditorView: View {
                 Text(previewDescription(for: slot, isProcessing: isProcessing))
                     .foregroundStyle(.secondary)
 
-                Button("움직임 보기".posturePetLocalized) {
+                Button("움직임 보기") {
                     viewModel.previewCharacterSlot(slot)
                 }
                 .disabled(isProcessing)
@@ -129,13 +129,13 @@ struct CharacterSlotEditorView: View {
         return VStack(alignment: .leading, spacing: 18) {
             editorSection(title: "사진") {
                 HStack(spacing: 8) {
-                    Button((isProcessing ? "처리 중" : slot.character == nil ? "사진 고르기" : "사진 바꾸기").posturePetLocalized) {
+                    Button(isProcessing ? "처리 중" : slot.character == nil ? "사진 고르기" : "사진 바꾸기") {
                         viewModel.pickCharacterImage(for: slot)
                     }
                     .disabled(isProcessing)
 
                     if slot.character != nil {
-                        Button("기본 캐릭터 사용".posturePetLocalized) {
+                        Button("기본 캐릭터 사용") {
                             viewModel.resetCharacterImage(for: slot)
                         }
                         .disabled(isProcessing)
@@ -145,19 +145,19 @@ struct CharacterSlotEditorView: View {
 
             editorSection(title: "배경") {
                 VStack(alignment: .leading, spacing: 6) {
-                    Button((isProcessing ? "배경 제거 중" : "배경 제거 다시 시도").posturePetLocalized) {
+                    Button(isProcessing ? "배경 제거 중" : "배경 제거 다시 시도") {
                         viewModel.removeBackground(for: slot)
                     }
                     .disabled(slot.character == nil || isProcessing)
 
-                    Text((isProcessing ? "이미지를 준비하는 중이에요." : "사진을 고르면 배경을 자동으로 지워요.").posturePetLocalized)
+                    Text(isProcessing ? "이미지를 준비하는 중이에요." : "사진을 고르면 배경을 자동으로 지워요.")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
             }
 
             editorSection(title: "맞춤") {
-                Button("움직임 맞추기".posturePetLocalized) {
+                Button("움직임 맞추기") {
                     isAdjustingCharacter = true
                 }
                 .disabled(slot.character == nil || isProcessing)
@@ -173,7 +173,7 @@ struct CharacterSlotEditorView: View {
 
     private func previewDescription(for slot: CharacterSlot, isProcessing: Bool) -> String {
         if isProcessing {
-            return "캐릭터를 준비하는 중이에요.".posturePetLocalized
+            return "캐릭터를 준비하는 중이에요."
         }
         return (slot.character == nil ? "기본 실루엣" : "등록된 이미지").posturePetLocalized
     }
@@ -183,7 +183,7 @@ struct CharacterSlotEditorView: View {
         @ViewBuilder content: () -> Content
     ) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title.posturePetLocalized)
+            Text(title)
                 .font(.headline)
 
             content()

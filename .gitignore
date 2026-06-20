@@ -22,8 +22,5 @@ Experiments/**/outputs/
 Experiments/**/.venv/
 Experiments/OpenAIImage/openai_config.py
 
-# Local StoreKit test configuration
-PosturePet/PosturePet.storekit
-
 # App runtime data
 PosturePet/Characters/
