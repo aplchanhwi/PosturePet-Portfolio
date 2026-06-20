@@ -52,6 +52,15 @@ struct GeneralSettingsView: View {
                     viewModel.startBreakNow()
                 }
             }
+
+            Section("법적 정보") {
+                /// macOS SwiftUI의 `Link`는 사용자가 클릭하면 기본 브라우저로 URL을 엽니다.
+                /// 개인정보 처리방침은 App Store 심사에서 앱 내부 접근 위치가 중요하므로 설정 탭 하단에 둡니다.
+                Link("개인정보 처리방침", destination: LegalLinks.privacyPolicy)
+                Link("이용약관", destination: LegalLinks.termsOfUse)
+                Link("라이선스/EULA", destination: LegalLinks.standardEULA)
+                Link("문의하기", destination: LegalLinks.support)
+            }
         }
         .formStyle(.grouped)
         .padding(12)
@@ -73,4 +82,11 @@ struct GeneralSettingsView: View {
             viewModel.selectRoutine(routine)
         }
     }
+}
+
+private enum LegalLinks {
+    static let support = URL(string: "https://github.com/aplchanhwi/PosturePet-Support")!
+    static let privacyPolicy = URL(string: "https://github.com/aplchanhwi/PosturePet-Support/blob/main/PrivacyPolicy.md")!
+    static let termsOfUse = URL(string: "https://github.com/aplchanhwi/PosturePet-Support/blob/main/TermsOfUse.md")!
+    static let standardEULA = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
 }
